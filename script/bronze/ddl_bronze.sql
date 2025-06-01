@@ -3,62 +3,52 @@
 
 
 
-TRUNCATE TABLE bronze.crm_cust_info;
-BULK INSERT bronze.crm_cust_info
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_crm/cust_info.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[crm_cust_info] (
+    [cst_id]             INT           NULL,
+    [cst_key]            NVARCHAR (50) NULL,
+    [cst_firstname]      NVARCHAR (50) NULL,
+    [cst_lastname]       NVARCHAR (50) NULL,
+    [cst_marital_status] NVARCHAR (50) NULL,
+    [cst_gndr]           NVARCHAR (50) NULL,
+    [cst_create_date]    DATE          NULL
 );
 
-TRUNCATE TABLE bronze.crm_prd_info;
-BULK INSERT bronze.crm_prd_info
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_crm/prd_info.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[crm_prd_info] (
+    [prd_id]       INT           NULL,
+    [prd_key]      NVARCHAR (50) NULL,
+    [prd_nm]       NVARCHAR (50) NULL,
+    [prd_cost]     INT           NULL,
+    [prd_line]     NVARCHAR (50) NULL,
+    [prd_start_dt] DATETIME      NULL,
+    [prd_end_dt]   DATETIME      NULL
 );
 
-TRUNCATE TABLE bronze.crm_sales_details;
-BULK INSERT bronze.crm_sales_details
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_crm/sales_details.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[crm_sales_detailes] (
+    [sls_ord_num]  NVARCHAR (50) NULL,
+    [sls_pred_ky]  NVARCHAR (50) NULL,
+    [sls_cust_id]  INT           NULL,
+    [sls_order_dt] INT           NULL,
+    [sls_ship_dt]  INT           NULL,
+    [sls_due_dt]   INT           NULL,
+    [sls_sales]    INT           NULL,
+    [sls_quantity] INT           NULL,
+    [sls_price]    INT           NULL
 );
 
-TRUNCATE TABLE bronze.erp_cust_az12;
-BULK INSERT bronze.erp_cust_az12
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_erp/CUST_AZ12.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[erp_cust_az12] (
+    [cid]   NVARCHAR (50) NULL,
+    [bdate] DATE          NULL,
+    [gen]   NVARCHAR (50) NULL
 );
 
-TRUNCATE TABLE bronze.erp_loc_a101;
-BULK INSERT bronze.erp_loc_a101
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_erp/LOC_A101.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[erp_loc_a101] (
+    [cid]   NVARCHAR (50) NULL,
+    [cntry] NVARCHAR (50) NULL
 );
 
-TRUNCATE TABLE bronze.erp_px_cat_g1v2;
-BULK INSERT bronze.erp_px_cat_g1v2
-FROM '/var/opt/mssql/import/sql-data-warehouse-project/datasets/source_erp/PX_CAT_G1V2.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    TABLOCK
+CREATE TABLE [bronze].[erp_px_cat_g1v2] (
+    [id]          NVARCHAR (50) NULL,
+    [cat]         NVARCHAR (50) NULL,
+    [subcat]      NVARCHAR (50) NULL,
+    [maintenance] NVARCHAR (50) NULL
 );
